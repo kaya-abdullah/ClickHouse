@@ -130,8 +130,13 @@ HTTP port, not the native protocol port `9000`.
 
 <Accordion title="Some dashboard panels are empty">
 The ClickHouse user can't read one or more of the `system` tables listed under
-[Monitor ClickHouse](#monitor-clickhouse), or `system.query_log` is turned off on the server. Grant
-`SELECT` on the tables you need and reconnect.
+[Monitor ClickHouse](#monitor-clickhouse). Grant `SELECT` on the tables you need and reconnect.
+</Accordion>
+
+<Accordion title="The slow-query view is empty">
+The slow-query view reads `system.query_log`, which records nothing while query logging is off.
+Enable the `log_queries` setting for the user, for example in its settings profile, and run a few
+queries. New entries appear once the log is flushed, which can take a few seconds.
 </Accordion>
 
 ## Next steps {#next-steps}
