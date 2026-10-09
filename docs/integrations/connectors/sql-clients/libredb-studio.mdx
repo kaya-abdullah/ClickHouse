@@ -60,6 +60,8 @@ database uses `default`.
 4. For HTTPS, open **SSL / TLS**, pick an SSL mode other than `disable`, and change **Port** to
    your server's HTTPS port (often `8443`). Every mode other than `disable` checks the server
    certificate against the system certificate store, which is what `verify-system` describes.
+   This works with ClickHouse Cloud and with servers whose certificate comes from a publicly
+   trusted CA. Self-signed and private-CA certificates are not supported yet.
 5. Select **Test Connection**, then **Establish Connection**.
 
 You can also paste a URL with **Paste URL** instead of filling the fields, for example
@@ -126,6 +128,12 @@ LibreDB Studio's server makes the requests, not your browser, so the host must b
 the machine or container that runs it. When LibreDB Studio runs in Docker and ClickHouse runs on
 the same machine, `localhost` points to the container, not to the host. Check that you entered the
 HTTP port, not the native protocol port `9000`.
+</Accordion>
+
+<Accordion title="HTTPS fails with a self-signed or private CA certificate">
+LibreDB Studio's ClickHouse connection only accepts certificates from publicly trusted CAs and
+ignores a CA certificate pasted under **SSL / TLS**, so the connection test fails against a
+self-signed or private-CA endpoint. Use a certificate from a publicly trusted CA on the server.
 </Accordion>
 
 <Accordion title="Some dashboard panels are empty">
